@@ -1,0 +1,29 @@
+micronaut:
+  application:
+    name: complete
+
+// h2を使う
+datasources:
+  default:
+    url: ${JDBC_URL:`jdbc:h2:mem:default;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE`}
+    username: ${JDBC_USER:sa}
+    password: ${JDBC_PASSWORD:"pass"}
+    driverClassName: ${JDBC_DRIVER:org.h2.Driver}
+
+# Postgresqlを使う
+#datasources:
+#  default:
+#    url: jdbc:postgresql://localhost:5432/micronaut
+#    username: dbuser
+#    password: theSecretPassword
+#    driverClassName: org.postgresql.Driver
+
+jpa:
+  default:
+    packages-to-scan:
+      - 'example.micronaut.domain.entity'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true
